@@ -1,18 +1,7 @@
 <template>
   <div class="search">
     <div class="title row">
-      <el-row type="flex" class="row-bg" justify="center">
-        <el-col :span="6"><div class="grid-content">
-          <div>
-            <div class="title-component" id="title-image">
-              <img src="../assets/ic_shopping_cart_large.svg">
-            </div>
-            <div class="title-component" id="title-text">
-              <h1>Ads Search</h1>
-            </div>
-          </div>
-        </div></el-col>
-      </el-row>
+      <img src="../assets/logo.png">
     </div>
     <div class="search row">
       <el-row>
@@ -66,16 +55,8 @@
     margin-bottom: 2%;
   }
 
-  .title-component {
-    float:left;
-  }
-
-  #title-image{
-    margin-left:10%;
-  }
-
-  #title-text{
-    margin-left:5%;
+  .title {
+    margin-top: 8%;
   }
 
 </style>
