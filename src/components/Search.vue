@@ -26,9 +26,11 @@
       </el-row>
     </div>
     <div class="repository row">
-      <a href="https://github.com/herospYL/ads-search-vue">
-        <img src="../assets/GitHub-Mark-32px.png">
-      </a>
+      <el-tooltip class="item" effect="dark" content="Github Repository" placement="bottom">
+        <a href="https://github.com/herospYL/ads-search-vue">
+          <img src="../assets/GitHub-Mark-32px.png">
+        </a>
+      </el-tooltip>
     </div>
   </div>
 </template>
@@ -48,7 +50,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   * {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
   h1, h2 {
