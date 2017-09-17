@@ -4,7 +4,7 @@ import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 import locale from 'element-ui/lib/locale/lang/en';
-import router from './router';
+import router from './router/route';
 import App from './App';
 
 Vue.use(ElementUI, { locale });
