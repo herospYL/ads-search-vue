@@ -38,25 +38,17 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  * {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
-
   h1, h2 {
     font-weight: bold;
   }
 
-  a {
-    color: #42b983;
-  }
-
   .row {
-    margin-top: 2%;
-    margin-bottom: 2%;
+    margin-top: 5ch;
+    margin-bottom: 5ch;
   }
 
   .title {
-    margin-top: 8%;
+    margin-top: 20ch;
   }
 
 </style>
