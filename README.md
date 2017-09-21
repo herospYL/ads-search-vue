@@ -1,5 +1,7 @@
 # ads-search-vue
 
+[![Build Status](https://travis-ci.org/herospYL/ads-search-vue.svg?branch=master)](https://travis-ci.org/herospYL/ads-search-vue)
+
 > An Ads Search Vue.js UI
 
 ## Build Setup

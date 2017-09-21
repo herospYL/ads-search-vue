@@ -8,7 +8,7 @@
         <el-col :span="12" :offset="6">
           <div class="grid-content">
             <el-input autofocus size="large" v-model="searchInput">
-              <el-button slot="append" icon="search"></el-button>
+              <el-button slot="append" icon="search" v-on:click="handleIconClick"></el-button>
             </el-input>
           </div>
         </el-col>
@@ -25,6 +25,17 @@
 </template>
 
 <script>
+  import Router from 'vue-router';
+
+  const router = new Router({
+    routes: [
+      {
+        path: '/:query',
+        name: 'Display',
+      },
+    ],
+  });
+
   export default {
     name: 'search',
     data() {
@@ -32,6 +43,12 @@
         msg: 'Welcome to Ads Search Vue.js App',
         searchInput: '',
       };
+    },
+    methods: {
+      handleIconClick() {
+        // Need vuex state management
+        router.push({ name: 'Display', params: { query: this.searchInput } });
+      },
     },
   };
 </script>
