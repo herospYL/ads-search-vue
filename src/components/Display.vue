@@ -8,58 +8,63 @@
           </router-link>
         </div>
         <div class="grid-content" id="grid-input">
-          <el-input autofocus size="large" v-model="displayInput">
-            <el-button slot="append" icon="search" v-on:click="handleIconClick"></el-button>
+          <el-input autofocus size="large" v-model="searchInput" @keyup.enter.native="handleTrigger">
+            <el-button slot="append" icon="search" @click="handleTrigger"></el-button>
           </el-input>
         </div>
       </div>
     </div>
-    <!--The following content should be a router view so that when hit search button, only this part will be updated-->
-    <div class="container">
-      <!--Use computed data to splice the input itemList so that at normal size, each row has 4 items-->
-      <el-row :gutter="10">
-        <el-col :xs="10" :sm="9" :md="8" :lg="6" v-for="(item, index) in itemList" :key="item.title">
-          <div class="grid-content">
-            <product-item :itemData="item"></product-item>
-          </div>
-        </el-col>
-      </el-row>
+    <div class="content">
+      <router-link :to="{ path: 'Content' }"></router-link>
+      <router-view></router-view>
     </div>
-    <div class="page">
+    <div :class="pageShow" v-if="!displayLoading">
       <el-pagination
         layout="prev, pager, next"
-        :page-size="12"
-        :total="pageCount">
+        :page-size="pageSize"
+        :total="displayTotalCount">
       </el-pagination>
     </div>
   </div>
 </template>
 <script>
-  import ProductItem from './product/ProductItem';
-  import sampleData from '../../test/sample-response';
+  import { mapState, mapActions } from 'vuex';
+  import Router from 'vue-router';
+  import { defaultColumnCount, defaultPageCount } from '../stores/actions';
+  import ContentGrid from './ContentGrid';
+
+  const router = new Router();
+  const contentTypeStr = ['post', 'error'];
 
   export default {
-    components: { ProductItem },
+    components: { ContentGrid },
     name: 'display',
     data() {
       return {
-        searchInput: '',
-        itemList: sampleData, // Use vuex for real implementation
+        searchInput: this.$route.query.query ? this.$route.query.query : '',
+        contentType: contentTypeStr[0],
+        pageSize: defaultPageCount,
       };
     },
+    created() {
+      this.handleNewSearch();
+    },
+    watch: {
+      $route: 'handleNewSearch',
+    },
     computed: {
-      pageCount() {
-        return this.itemList.length;
-      },
-      displayInput() {
-        return this.$route.params.query;
+      ...mapState(['displayTotalCount', 'displayLoading']),
+      pageShow() {
+        return this.displayTotalCount <= defaultColumnCount ? 'page-less' : 'page-more';
       },
     },
     methods: {
-      handleIconClick() {
-        // Need vuex state management
-        // TODO: How to bind this?
-        console.log('Not finished');
+      ...mapActions(['sendSearch']),
+      handleTrigger() {
+        router.push({ path: '/search/content', query: { query: this.searchInput } });
+      },
+      handleNewSearch() {
+        this.sendSearch(this.searchInput);
       },
     },
   };
@@ -96,15 +101,18 @@
 
   }
 
-  .container {
-    padding: 5ch;
-  }
-
-  .page {
+  .page-less {
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
+    padding: 1ch;
+    background-color: #efefef;
+    text-align: center;
+  }
+
+  .page-more {
+    position: relative;
     padding: 1ch;
     background-color: #efefef;
     text-align: center;

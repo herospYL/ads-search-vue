@@ -29,5 +29,12 @@ export default [
     price: '$25.00',
     star: 3.8,
   },
+  {
+    url: 'https://www.amazon.com/Nuby-Octopus-Hoopla-Bathtime-Purple/dp/B008CDR7LW/ref=sr_1_5_a_it?ie=UTF8&qid=1506309161&sr=8-5&keywords=toys',
+    image: 'https://images-na.ssl-images-amazon.com/images/I/41CA7xS4brL._AC_US218_.jpg',
+    title: 'Nuby Octopus Hoopla Bathtime Fun Toys, Purple',
+    price: '$5.66',
+    star: 4.4,
+  },
 ];
 

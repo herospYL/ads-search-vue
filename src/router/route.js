@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Search from '@/components/Search';
 import Display from '@/components/Display';
+import ContentGrid from '@/components/ContentGrid';
 
 Vue.use(Router);
 
@@ -13,9 +14,16 @@ export default new Router({
       component: Search,
     },
     {
-      path: '/:query',
+      path: '/search',
       name: 'Display',
       component: Display,
+      children: [
+        {
+          path: 'content',
+          name: 'Content',
+          component: ContentGrid,
+        },
+      ],
     },
   ],
 });

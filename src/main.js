@@ -5,6 +5,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 import locale from 'element-ui/lib/locale/lang/en';
 import router from './router/route';
+import store from './stores/store';
 import App from './App';
 
 Vue.use(ElementUI, { locale });
@@ -15,6 +16,7 @@ Vue.config.productionTip = false; // Turn on when release
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App },
 });

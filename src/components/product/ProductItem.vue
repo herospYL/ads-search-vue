@@ -26,7 +26,10 @@
 <script>
   export default {
     name: 'product-item',
-    props: ['itemData'],
+    props: {
+      itemData: Object,
+      default: null,
+    },
     data() {
       return {};
     },

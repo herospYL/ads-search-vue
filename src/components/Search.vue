@@ -7,8 +7,8 @@
       <el-row>
         <el-col :span="12" :offset="6">
           <div class="grid-content">
-            <el-input autofocus size="large" v-model="searchInput">
-              <el-button slot="append" icon="search" v-on:click="handleIconClick"></el-button>
+            <el-input autofocus size="large" v-model="searchInput" @keyup.enter.native="handleTrigger">
+              <el-button slot="append" icon="search" @click="handleTrigger"></el-button>
             </el-input>
           </div>
         </el-col>
@@ -25,16 +25,10 @@
 </template>
 
 <script>
+  import { mapMutations } from 'vuex';
   import Router from 'vue-router';
 
-  const router = new Router({
-    routes: [
-      {
-        path: '/:query',
-        name: 'Display',
-      },
-    ],
-  });
+  const router = new Router();
 
   export default {
     name: 'search',
@@ -44,10 +38,19 @@
         searchInput: '',
       };
     },
+    created() {
+      this.handleMainSearch();
+    },
+    watch: {
+      $route: 'handleMainSearch',
+    },
     methods: {
-      handleIconClick() {
-        // Need vuex state management
-        router.push({ name: 'Display', params: { query: this.searchInput } });
+      ...mapMutations(['resetDisplay']),
+      handleTrigger() {
+        router.push({ path: '/search/content', query: { query: this.searchInput } });
+      },
+      handleMainSearch() {
+        this.resetDisplay();
       },
     },
   };
